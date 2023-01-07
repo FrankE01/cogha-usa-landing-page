@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Inter var";
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  font-named-instance: "Regular";
+  src: url("../static/fonts/Inter-VariableFont_slnt,wght.ttf") format("woff2");
+}
+@font-face {
+  font-family: "Macondo Regular";
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  font-named-instance: "Regular";
+  src: url("../static/fonts/Macondo-Regular.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Quicksand var";
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+  font-named-instance: "Regular";
+  src: url("../static/fonts/Quicksand-VariableFont_wght.ttf") format("woff2");
+}
