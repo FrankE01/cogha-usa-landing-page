@@ -10,5 +10,11 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-plugin-postcss",
     "gatsby-plugin-styled-components",
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        icon: "./src/images/cogha_mark.png",
+      },
+    },
   ],
 };

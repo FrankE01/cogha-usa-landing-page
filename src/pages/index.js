@@ -1,497 +1,424 @@
-import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
 import NavLink from "../components/NavLink";
 import headerbg from "../images/coghabg.png";
-import Timer from "../components/Timer";
+import Gallery from "../components/Gallery";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
+import HeaderGrid from "../components/HeaderGrid";
+import HeaderText from "../components/HeaderText";
+import FeaturedEvent from "../components/FeaturedEvent";
+import FeaturedEventSmall from "../components/FeaturedEventSmall";
 
 const Mainpage = () => {
   return (
-    <main>
-      <header
-        style={{
-          height: "650px",
-          backgroundImage: `url(${headerbg})`,
-          backgroundSize: `calc(100 * 1vw)`,
-        }}
-      >
-        <nav
-          className="w-full py-5 px-10 mx-auto"
+    <div>
+      <main>
+        <header
           style={{
-            alignItems: "center",
-            justifyContent: "space-between",
-            display: "flex",
-            border: "1px solid #eeeeee",
-            borderTopStyle: "none",
-            borderLeftStyle: "none",
-            borderRightStyle: "none",
+            height: window.innerWidth < 500 ? "450px" : "650px",
+            backgroundImage: `url(${headerbg})`,
+            backgroundSize: `100vw`,
           }}
         >
-          <div style={{ width: "120px" }}>
-            <Link to="/">
-              <StaticImage
-                alt="logo"
-                src="../images/cogha.png"
-                placeholder="blurred"
-              />
-            </Link>
-          </div>
+          {window.innerWidth < 500 ? <Sidebar /> : <Navbar />}
+
+          {window.innerWidth < 500 ? <HeaderText /> : <HeaderGrid />}
+        </header>
+        <section className="w-full py-10 px-10 mx-auto">
+          {window.innerWidth < 500 ? <FeaturedEventSmall /> : <FeaturedEvent />}
+
           <div
-            className="flex"
+            className="my-24"
             style={{
               display: "flex",
-              justifyContent: "space-between",
-              width: "450px",
+              alignItems: "center",
+              justifyContent: "space-around",
+              flexDirection: window.innerWidth < 500 ? "column" : "row",
+              gap: window.innerWidth < 500 ? "200px" : "0",
             }}
           >
-            <NavLink>Home</NavLink>
-            <NavLink>What We Do</NavLink>
-            <NavLink>Gallery</NavLink>
-            <NavLink>Get In Touch</NavLink>
-          </div>
-        </nav>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(6, 16.6666666666%)",
-            gridTemplateRows: "40% 40%",
-            gridTemplateAreas: `"image1 . middleText middleText . ." ". image2 middleText middleText . ."`,
-          }}
-          className="px-10"
-        >
-          <div style={{ padding: `calc(2 * 1vw)` }}>
             <StaticImage
-              alt="image1"
-              src="../images/image1.jpg"
+              src="../images/wwd_image.png"
+              alt="what we do"
               placeholder="blurred"
-              style={{
-                gridArea: "image1",
-                height: "250px",
-                borderRadius: "40px",
-              }}
+              style={{ width: window.innerWidth < 500 ? "250px" : "30vw" }}
             />
-          </div>
-          <div></div>
-          <div
-            style={{
-              fontFamily: "Macondo Regular",
-              fontSize: `calc(5 * 1vw)`,
-              textAlign: "center",
-              gridArea: "middleText",
-            }}
-          >
-            CELEBRATION OF GHANAIAN ARTS
-            <div className="mt-2">
+            <div
+              style={{
+                width: window.innerWidth < 500 ? "250px" : "30vw",
+                display: "flex",
+                flexDirection: "column",
+                height: "300px",
+                justifyContent: "space-around",
+                gap: "20px",
+              }}
+            >
               <p
                 style={{
                   fontFamily: "Quicksand var",
-                  fontSize: `calc(1.5 * 1vw)`,
-                  color: "#888888",
-                }}
-              >
-                SEE MORE
-              </p>
-              <div
-                className="m-auto -mt-4"
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  width: `calc(4 * 1vw)`,
-                }}
-              >
-                <svg
-                  width="83"
-                  height="89"
-                  viewBox="0 0 83 89"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g filter="url(#filter0_dd_7_28)">
-                    <circle cx="41.5001" cy="43.5" r="37.5" fill="white" />
-                  </g>
-                  <path
-                    d="M54.5001 44L42.0001 56.5L29.5001 44"
-                    stroke="#888888"
-                    stroke-width="2"
-                  />
-                  <path
-                    d="M54.5001 31.5L42.0001 44L29.5001 31.5"
-                    stroke="#888888"
-                    stroke-width="2"
-                  />
-                  <defs>
-                    <filter
-                      id="filter0_dd_7_28"
-                      x="6.10352e-05"
-                      y="0"
-                      width="83"
-                      height="89"
-                      filterUnits="userSpaceOnUse"
-                      color-interpolation-filters="sRGB"
-                    >
-                      <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                      <feColorMatrix
-                        in="SourceAlpha"
-                        type="matrix"
-                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                        result="hardAlpha"
-                      />
-                      <feOffset dy="4" />
-                      <feGaussianBlur stdDeviation="2" />
-                      <feComposite in2="hardAlpha" operator="out" />
-                      <feColorMatrix
-                        type="matrix"
-                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-                      />
-                      <feBlend
-                        mode="normal"
-                        in2="BackgroundImageFix"
-                        result="effect1_dropShadow_7_28"
-                      />
-                      <feColorMatrix
-                        in="SourceAlpha"
-                        type="matrix"
-                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                        result="hardAlpha"
-                      />
-                      <feOffset dy="-2" />
-                      <feGaussianBlur stdDeviation="2" />
-                      <feComposite in2="hardAlpha" operator="out" />
-                      <feColorMatrix
-                        type="matrix"
-                        values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
-                      />
-                      <feBlend
-                        mode="normal"
-                        in2="effect1_dropShadow_7_28"
-                        result="effect2_dropShadow_7_28"
-                      />
-                      <feBlend
-                        mode="normal"
-                        in="SourceGraphic"
-                        in2="effect2_dropShadow_7_28"
-                        result="shape"
-                      />
-                    </filter>
-                  </defs>
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div></div>
-          <div style={{ padding: `calc(2 * 1vw)` }}>
-            <StaticImage
-              alt="image2"
-              src="../images/image2.jpg"
-              placeholder="blurred"
-              style={{
-                gridArea: "image2",
-                height: "250px",
-                borderRadius: "40px",
-              }}
-            />
-          </div>
-          <div></div>
-          <div style={{ padding: `calc(2 * 1vw)` }}>
-            <StaticImage
-              alt="image3"
-              src="../images/image3.jpg"
-              placeholder="blurred"
-              style={{
-                gridArea: "image3",
-                height: "250px",
-                borderRadius: "40px",
-              }}
-            />
-          </div>
-          <div style={{ padding: `calc(2 * 1vw)` }}>
-            <StaticImage
-              alt="image4"
-              src="../images/image4.jpg"
-              placeholder="blurred"
-              style={{
-                gridArea: "image4",
-                height: "250px",
-                borderRadius: "40px",
-              }}
-            />
-          </div>
-          <div></div>
-        </div>
-      </header>
-      <section className="w-full py-5 px-10 mx-auto">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <div
-            className="-mr-10"
-            style={{
-              width: "67%",
-              height: "300px",
-              backgroundColor: "#000000",
-              borderRadius: "0 40px 40px 40px",
-              padding: "50px",
-              display: "flex",
-              flexDirection: "row",
-              gap: "40px",
-            }}
-          >
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "25px" }}
-            >
-              <div
-                style={{ display: "flex", flexDirection: "row", gap: "20px" }}
-              >
-                <svg
-                  width="18"
-                  height="20"
-                  viewBox="0 0 18 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1 7C1 4.17157 1 2.75736 1.87868 1.87868C2.75736 1 4.17157 1 7 1H11C13.8284 1 15.2426 1 16.1213 1.87868C17 2.75736 17 4.17157 17 7V13.8276C17 16.5109 17 17.8525 16.1557 18.2629C15.3114 18.6733 14.2565 17.8444 12.1465 16.1866L11.4713 15.656C10.2849 14.7239 9.69173 14.2578 9 14.2578C8.30827 14.2578 7.71509 14.7239 6.52871 15.656L5.85346 16.1866C3.74355 17.8444 2.68859 18.6733 1.84429 18.2629C1 17.8525 1 16.5109 1 13.8276V7Z"
-                    fill="white"
-                    stroke="white"
-                    stroke-width="2"
-                  />
-                </svg>
-                <p
-                  style={{
-                    fontFamily: "Inter var",
-                    fontSize: "16",
-                    fontWeight: "600",
-                    color: "#ffffff",
-                  }}
-                >
-                  Featured Event
-                </p>
-              </div>
-              <div>
-                <p
-                  style={{
-                    fontFamily: "Quicksand var",
-                    fontSize: "36px",
-                    fontWeight: "600",
-                    color: "#ffffff",
-                  }}
-                >
-                  COGHA USA Summer Event
-                </p>
-                <p
-                  style={{
-                    color: "#ffffff",
-                    fontFamily: "Quicksand var",
-                    fontSize: "24px",
-                  }}
-                >
-                  #summerfest #coghafest
-                </p>
-              </div>
-              <button
-                style={{
-                  backgroundColor: "#ffffff",
-                  width: "150px",
-                  height: "50px",
-                  padding: "20px",
-                  borderRadius: "20px",
-                  fontFamily: "Inter var",
                   fontWeight: "700",
-                  fontSize: "16px",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  display: "flex",
+                  fontSize: "36px",
                 }}
               >
-                R.S.V.P.
-              </button>
-            </div>
-
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-            >
+                What We Do
+              </p>
               <p
                 style={{
-                  color: "#ffffff",
                   fontFamily: "Inter var",
-                  fontSize: "16",
-                  fontWeight: "600",
+                  fontSize: "16px",
                 }}
               >
-                Starts in...
+                The Celebration of Ghanaian Arts COGHA, USA is a festival of
+                Arts and Culture aimed at promoting Ghana to the North American
+                community specifically and the international community
+                generally. It goes without saying that one of the greatest
+                ambassadors of Ghanaian Culture has been its Arts and Culture.
+                Enter COGHA, with our drive and ambition to put Ghana at the
+                centre of the world’s arts and cultural ecosystem, we have
+                modeled this festival to harness and exhibit the vast arts
+                talents that the country boasts of by giving them the medium to
+                show to the world their God-given talents every year in June. We
+                own the summer! Think summer, think COGHAFEST!
               </p>
-              <div className="-mt-5">
-                <Timer />
-                <div
-                  className="-mt-5"
-                  style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    width: "306px",
-                    textAlign: "center",
-                  }}
-                >
-                  <p
-                    style={{
-                      color: "#aaaaaa",
-                      fontFamily: "Quicksand var",
-                      fontSize: "16px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    Months
-                  </p>
-                  <p
-                    style={{
-                      color: "#aaaaaa",
-                      fontFamily: "Quicksand var",
-                      fontSize: "16px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    Weeks
-                  </p>
-                  <p
-                    style={{
-                      color: "#aaaaaa",
-                      fontFamily: "Quicksand var",
-                      fontSize: "16px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    Days
-                  </p>
-                  <p
-                    style={{
-                      color: "#aaaaaa",
-                      fontFamily: "Quicksand var",
-                      fontSize: "16px",
-                      fontWeight: "600",
-                    }}
-                  >
-                    Hours
-                  </p>
-                </div>
-              </div>
-              <hr style={{ color: "#aaaaaa", width: "320px" }} />
+            </div>
+          </div>
+        </section>
+        <section className="w-full py-10 px-10 mx-auto">
+          <p
+            style={{
+              fontFamily: "Quicksand var",
+              fontWeight: "700",
+              fontSize: "36px",
+              textAlign: "center",
+            }}
+          >
+            Photo Gallery
+          </p>
 
+          <Gallery />
+        </section>
+        <section className="w-full py-10 px-10 mx-auto">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: window.innerWidth < 500 ? "column-reverse" : "row",
+              justifyContent: "space-around",
+              alignItems: "center",
+            }}
+          >
+            <form>
               <div
-                className="mt-4"
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  gap: "10px",
+                  gap: "15px",
                 }}
               >
                 <div
-                  style={{ display: "flex", gap: "10px", alignItems: "center" }}
+                  style={{
+                    display: "flex",
+                    flexDirection: window.innerWidth < 500 ? "column" : "row",
+                    gap: "30px",
+                  }}
                 >
                   <div
                     style={{
-                      width: "30px",
-                      padding: "4.5px",
-                      border: "1px solid white",
-                      borderRadius: "50px",
                       display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
+                      flexDirection: "column",
+                      gap: "5px",
                     }}
                   >
-                    <svg
-                      width="16"
-                      height="18"
-                      viewBox="0 0 16 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                    <label
+                      htmlFor="fname"
+                      style={{
+                        fontFamily: "Inter var",
+                        fontWeight: "600",
+                        fontSize: "16px",
+                      }}
                     >
-                      <path
-                        d="M8.39804 16.804L8.6743 17.3366V17.3366L8.39804 16.804ZM7.60196 16.804L7.3257 17.3366L7.3257 17.3366L7.60196 16.804ZM14.4 8C14.4 10.2907 13.2328 12.1563 11.829 13.5722C10.4258 14.9876 8.83632 15.9007 8.12178 16.2713L8.6743 17.3366C9.44269 16.938 11.1542 15.9573 12.6812 14.4171C14.2077 12.8774 15.6 10.7256 15.6 8H14.4ZM8 1.6C11.5346 1.6 14.4 4.46538 14.4 8H15.6C15.6 3.80264 12.1974 0.4 8 0.4V1.6ZM1.6 8C1.6 4.46538 4.46538 1.6 8 1.6V0.4C3.80264 0.4 0.4 3.80264 0.4 8H1.6ZM7.87822 16.2713C7.16368 15.9007 5.57422 14.9876 4.17097 13.5722C2.76717 12.1563 1.6 10.2907 1.6 8H0.4C0.4 10.7256 1.79235 12.8774 3.31879 14.4171C4.8458 15.9573 6.55731 16.938 7.3257 17.3366L7.87822 16.2713ZM8.12178 16.2713C8.04213 16.3127 7.95787 16.3127 7.87822 16.2713L7.3257 17.3366C7.75178 17.5576 8.24822 17.5576 8.6743 17.3366L8.12178 16.2713ZM10.4 8C10.4 9.32548 9.32548 10.4 8 10.4V11.6C9.98823 11.6 11.6 9.98823 11.6 8H10.4ZM8 5.6C9.32548 5.6 10.4 6.67452 10.4 8H11.6C11.6 6.01178 9.98823 4.4 8 4.4V5.6ZM5.6 8C5.6 6.67452 6.67452 5.6 8 5.6V4.4C6.01178 4.4 4.4 6.01178 4.4 8H5.6ZM8 10.4C6.67452 10.4 5.6 9.32548 5.6 8H4.4C4.4 9.98823 6.01178 11.6 8 11.6V10.4Z"
-                        fill="#EEEEEE"
-                      />
-                    </svg>
+                      First Name
+                    </label>
+                    <input
+                      className="px-3"
+                      type={"text"}
+                      id="fname"
+                      name="fname"
+                      style={{
+                        width: window.innerWidth < 500 ? "250px" : "13vw",
+                        height: "40px",
+                        border: "2px solid #888888",
+                        backgroundColor: "#eeeeee",
+                        borderRadius: "10px",
+                      }}
+                    />
                   </div>
-                  <p
+                  <div
                     style={{
-                      color: "#eeeeee",
-                      fontFamily: "Inter var",
-                      fontSize: "16px",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "5px",
                     }}
                   >
-                    Alexandria, Virginia, USA.
-                  </p>
+                    <label
+                      htmlFor="lname"
+                      style={{
+                        fontFamily: "Inter var",
+                        fontWeight: "600",
+                        fontSize: "16px",
+                      }}
+                    >
+                      Last Name
+                    </label>
+                    <input
+                      className="px-3"
+                      type={"text"}
+                      id="lname"
+                      name="lname"
+                      style={{
+                        width: "13vw",
+                        height: "40px",
+                        border: "2px solid #888888",
+                        backgroundColor: "#eeeeee",
+                        borderRadius: "10px",
+                      }}
+                    />
+                  </div>
                 </div>
                 <div
-                  style={{ display: "flex", gap: "10px", alignItems: "center" }}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "5px",
+                  }}
                 >
-                  <div
+                  <label
+                    htmlFor="email"
                     style={{
-                      width: "30px",
-                      padding: "3.5px",
-                      border: "1px solid white",
-                      borderRadius: "50px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <circle
-                        cx="10"
-                        cy="10"
-                        r="8.6"
-                        stroke="white"
-                        stroke-width="1.2"
-                      />
-                      <path
-                        d="M14.5 10H10.25C10.1119 10 10 9.88807 10 9.75V6.5"
-                        stroke="white"
-                        stroke-width="1.2"
-                        stroke-linecap="round"
-                      />
-                    </svg>
-                  </div>
-                  <p
-                    style={{
-                      color: "#eeeeee",
                       fontFamily: "Inter var",
+                      fontWeight: "600",
                       fontSize: "16px",
                     }}
                   >
-                    April 1, 2023 12:00 pm GMT
-                  </p>
+                    Email
+                  </label>
+                  <input
+                    className="px-3"
+                    type="email"
+                    id="email"
+                    name="email"
+                    style={{
+                      width: "28vw",
+                      height: "40px",
+                      border: "2px solid #888888",
+                      backgroundColor: "#eeeeee",
+                      borderRadius: "10px",
+                    }}
+                  />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "5px",
+                  }}
+                >
+                  <label
+                    htmlFor="message"
+                    style={{
+                      fontFamily: "Inter var",
+                      fontWeight: "600",
+                      fontSize: "16px",
+                    }}
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    name="message"
+                    id="message"
+                    className="px-3 py-1"
+                    style={{
+                      width: "28vw",
+                      height: "80px",
+                      border: "2px solid #888888",
+                      backgroundColor: "#eeeeee",
+                      borderRadius: "10px",
+                    }}
+                  />
+                </div>
+                <button
+                  style={{
+                    backgroundColor: "#321FFF",
+                    color: "#ffffff",
+                    width: "150px",
+                    height: "50px",
+                    padding: "20px",
+                    borderRadius: "20px",
+                    fontFamily: "Inter var",
+                    fontWeight: "700",
+                    fontSize: "16px",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    display: "flex",
+                  }}
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+            <div style={{ textAlign: "right" }}>
+              <p
+                style={{
+                  fontFamily: "Quicksand var",
+                  fontWeight: "700",
+                  fontSize: "36px",
+                }}
+              >
+                Get In Touch
+              </p>
+              <div style={{ fontFamily: "Inter var" }}>
+                <p style={{ fontWeight: "600", padding: "20px 0" }}>
+                  Send us a message or give your feedback
+                </p>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "15px",
+                  }}
+                >
+                  <div>
+                    <p>5901 Kingstowne village parkway, STE201,</p>
+                    <p> Alexandria, VA, United States, Virginia</p>
+                  </div>
+                  <p>+1 301-653-3298</p>
+                  <p>originalcogausa@gmail.com</p>
                 </div>
               </div>
             </div>
           </div>
+        </section>
+        <hr style={{ width: "80vw" }} className="mx-auto" />
+        <section
+          className="w-full pt-10 pb-2 px-10 mx-auto"
+          style={{ display: "flex", flexDirection: "column", gap: "60px" }}
+        >
           <div
-            className="-ml-10"
             style={{
-              width: "31%",
-              height: "250px",
+              display: "flex",
+              justifyContent: "center",
+              width: window.innerWidth < 500 ? "50vw" : "",
             }}
           >
             <StaticImage
-              src="../images/event_image.jpg"
-              alt="event_image"
+              alt="cogha"
+              src="../images/cogha.png"
               placeholder="blurred"
-              style={{ height: "250px", borderRadius: "50px 50px 0 50px" }}
             />
           </div>
-        </div>
-      </section>
-    </main>
+          <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <div
+                style={{
+                  display: window.innerWidth < 500 ? "none" : "flex",
+                  justifyContent: "space-between",
+                  width: "450px",
+                }}
+              >
+                <NavLink>Home</NavLink>
+                <NavLink>What We Do</NavLink>
+                <NavLink>Gallery</NavLink>
+                <NavLink>Get In Touch</NavLink>
+              </div>
+              <div
+                style={{ display: "flex", flexDirection: "row", gap: "3vw" }}
+              >
+                <div
+                  style={{
+                    width: "3vw",
+                    height: "3vw",
+                    borderRadius: "3vw",
+                    backgroundColor: "#CCC7FF",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <svg
+                    width="26"
+                    height="21"
+                    viewBox="0 0 26 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M25.9667 2.71657C25.0271 3.12419 24.0335 3.39365 23.0167 3.51657C24.0894 2.87572 24.8933 1.86755 25.2792 0.679071C24.2711 1.27915 23.1676 1.70194 22.0167 1.92907C21.2474 1.09479 20.2229 0.539441 19.1039 0.350135C17.985 0.160829 16.8349 0.348269 15.8339 0.883057C14.833 1.41785 14.0378 2.26973 13.5732 3.30512C13.1086 4.3405 13.0008 5.50081 13.2667 6.60407C11.2285 6.50098 9.23473 5.97026 7.41499 5.0464C5.59526 4.12253 3.99023 2.82619 2.70417 1.24157C2.2531 2.02928 2.01607 2.92135 2.01667 3.82907C2.01508 4.67205 2.22195 5.50234 2.61887 6.24603C3.01579 6.98971 3.59045 7.62371 4.29167 8.09157C3.47665 8.06939 2.67903 7.85069 1.96667 7.45407V7.51657C1.97278 8.69768 2.38667 9.84044 3.13832 10.7515C3.88997 11.6626 4.93324 12.2861 6.09167 12.5166C5.64574 12.6523 5.18277 12.7238 4.71667 12.7291C4.39404 12.7253 4.0722 12.696 3.75417 12.6416C4.08406 13.6576 4.72245 14.5455 5.58052 15.1818C6.43858 15.818 7.47364 16.171 8.54168 16.1916C6.73818 17.6107 4.51153 18.3851 2.21667 18.3916C1.79884 18.3929 1.38134 18.3679 0.966675 18.3166C3.30971 19.8294 6.04019 20.6325 8.82917 20.6291C10.7538 20.6491 12.6631 20.2853 14.4456 19.5592C16.228 18.833 17.848 17.7589 19.2107 16.3997C20.5734 15.0405 21.6516 13.4233 22.3824 11.6427C23.1131 9.8621 23.4817 7.95373 23.4667 6.02907C23.4667 5.81657 23.4667 5.59157 23.4667 5.36657C24.4475 4.63508 25.2935 3.73835 25.9667 2.71657V2.71657Z"
+                      fill="#321FFF"
+                    />
+                  </svg>
+                </div>
+
+                <div
+                  style={{
+                    width: "3vw",
+                    height: "3vw",
+                    borderRadius: "3vw",
+                    backgroundColor: "#CCC7FF",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <svg
+                    width="23"
+                    height="23"
+                    viewBox="0 0 23 23"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.43 9.06783C10.9628 9.06783 10.5061 9.20637 10.1176 9.46593C9.72917 9.72549 9.4264 10.0944 9.24761 10.5261C9.06882 10.9577 9.02204 11.4326 9.11319 11.8909C9.20433 12.3491 9.42931 12.77 9.75967 13.1004C10.09 13.4307 10.5109 13.6557 10.9692 13.7468C11.4274 13.838 11.9023 13.7912 12.334 13.6124C12.7656 13.4336 13.1345 13.1309 13.3941 12.7424C13.6537 12.3539 13.7922 11.8972 13.7922 11.43C13.7922 11.1198 13.7311 10.8126 13.6124 10.5261C13.4937 10.2395 13.3197 9.97905 13.1003 9.7597C12.881 9.54035 12.6206 9.36635 12.334 9.24764C12.0474 9.12893 11.7402 9.06783 11.43 9.06783ZM20.8883 6.7342C20.8833 5.99864 20.7479 5.2698 20.4883 4.58155C20.2971 4.07793 20.0013 3.62057 19.6204 3.23966C19.2395 2.85875 18.7821 2.56294 18.2785 2.37175C17.5902 2.11216 16.8614 1.97672 16.1258 1.9717C14.8971 1.90503 14.5351 1.90503 11.43 1.90503C8.32485 1.90503 7.9629 1.90503 6.73417 1.9717C5.99861 1.97672 5.26977 2.11216 4.58152 2.37175C4.0779 2.56294 3.62054 2.85875 3.23963 3.23966C2.85871 3.62057 2.56291 4.07793 2.37172 4.58155C2.11213 5.2698 1.97668 5.99864 1.97167 6.7342C1.905 7.96293 1.905 8.32488 1.905 11.43C1.905 14.5352 1.905 14.8971 1.97167 16.1259C1.98193 16.864 2.11719 17.5951 2.37172 18.288C2.56206 18.7894 2.85762 19.2441 3.2385 19.6215C3.61778 20.0047 4.07612 20.3005 4.58152 20.4883C5.26977 20.7479 5.99861 20.8833 6.73417 20.8884C7.9629 20.955 8.32485 20.955 11.43 20.955C14.5351 20.955 14.8971 20.955 16.1258 20.8884C16.8614 20.8833 17.5902 20.7479 18.2785 20.4883C18.7839 20.3005 19.2422 20.0047 19.6215 19.6215C20.0024 19.2441 20.2979 18.7894 20.4883 18.288C20.7476 17.5964 20.883 16.8645 20.8883 16.1259C20.955 14.8971 20.955 14.5352 20.955 11.43C20.955 8.32488 20.955 7.96293 20.8883 6.7342ZM18.469 14.3542C18.4384 14.942 18.313 15.521 18.0975 16.0687C17.9126 16.5256 17.6377 16.9407 17.2892 17.2892C16.9406 17.6377 16.5256 17.9126 16.0687 18.0975C15.5158 18.301 14.9336 18.4136 14.3446 18.4309C13.5922 18.4309 13.3921 18.4309 11.43 18.4309C9.46785 18.4309 9.26782 18.4309 8.51535 18.4309C7.92645 18.4136 7.34424 18.301 6.79132 18.0975C6.31898 17.922 5.89243 17.642 5.54355 17.2784C5.19843 16.9367 4.9319 16.5239 4.7625 16.0687C4.55824 15.5164 4.44875 14.9335 4.43865 14.3447C4.43865 13.5922 4.43865 13.3922 4.43865 11.43C4.43865 9.46788 4.43865 9.26785 4.43865 8.51538C4.44875 7.92657 4.55824 7.34369 4.7625 6.79135C4.93803 6.31901 5.21806 5.89246 5.58165 5.54358C5.92487 5.20032 6.33723 4.93407 6.79132 4.76253C7.34424 4.55908 7.92645 4.4465 8.51535 4.42915C9.26782 4.42915 9.46785 4.42915 11.43 4.42915C13.3921 4.42915 13.5922 4.42915 14.3446 4.42915C14.9336 4.4465 15.5158 4.55908 16.0687 4.76253C16.541 4.93806 16.9676 5.21809 17.3164 5.58168C17.6616 5.92339 17.9281 6.33618 18.0975 6.79135C18.3009 7.34427 18.4135 7.92648 18.4309 8.51538C18.4309 9.26785 18.4309 9.46788 18.4309 11.43C18.4309 13.3922 18.4975 13.5922 18.469 14.3447V14.3542ZM16.945 7.2676C16.8316 6.95993 16.6528 6.68052 16.4209 6.44866C16.189 6.21679 15.9096 6.03799 15.6019 5.92458C15.1795 5.77814 14.7346 5.70721 14.2875 5.71503C13.5445 5.71503 13.335 5.71503 11.43 5.71503C9.525 5.71503 9.31545 5.71503 8.5725 5.71503C8.12317 5.71942 7.67817 5.80326 7.25805 5.96268C6.95509 6.07094 6.67864 6.24244 6.44707 6.46579C6.21551 6.68914 6.03414 6.95922 5.91502 7.25808C5.7767 7.68229 5.70912 8.12637 5.715 8.57253C5.715 9.31548 5.715 9.52503 5.715 11.43C5.715 13.335 5.715 13.5446 5.715 14.2875C5.72444 14.7363 5.80812 15.1805 5.96265 15.602C6.07606 15.9097 6.25486 16.1891 6.48673 16.4209C6.71859 16.6528 6.998 16.8316 7.30567 16.945C7.71207 17.0945 8.13973 17.1781 8.5725 17.1927C9.31545 17.1927 9.525 17.1927 11.43 17.1927C13.335 17.1927 13.5445 17.1927 14.2875 17.1927C14.7368 17.1883 15.1818 17.1044 15.6019 16.945C15.9096 16.8316 16.189 16.6528 16.4209 16.4209C16.6528 16.1891 16.8316 15.9097 16.945 15.602C17.1044 15.1819 17.1882 14.7369 17.1926 14.2875C17.1926 13.5446 17.1926 13.335 17.1926 11.43C17.1926 9.52503 17.1926 9.31548 17.1926 8.57253C17.1929 8.12276 17.1089 7.67691 16.945 7.25808V7.2676ZM11.43 15.0686C10.9526 15.0686 10.4799 14.9744 10.039 14.7914C9.59811 14.6085 9.19763 14.3403 8.86052 14.0023C8.52341 13.6643 8.25629 13.2631 8.07448 12.8217C7.89266 12.3803 7.79972 11.9074 7.80097 11.43C7.80098 10.71 8.01462 10.0061 8.41485 9.40757C8.81508 8.80901 9.38391 8.34266 10.0493 8.06755C10.7147 7.79243 11.4468 7.72094 12.1529 7.86211C12.8589 8.00327 13.5073 8.35076 14.0157 8.86057C14.5242 9.37039 14.87 10.0196 15.0093 10.726C15.1486 11.4325 15.0752 12.1644 14.7984 12.8291C14.5215 13.4937 14.0537 14.0613 13.4541 14.46C12.8544 14.8587 12.15 15.0705 11.43 15.0686ZM15.24 8.50585C15.0294 8.48357 14.8346 8.38414 14.693 8.22674C14.5513 8.06934 14.473 7.8651 14.473 7.65337C14.473 7.44163 14.5513 7.23739 14.693 7.07999C14.8346 6.92259 15.0294 6.82317 15.24 6.80088C15.4506 6.82317 15.6454 6.92259 15.787 7.07999C15.9287 7.23739 16.007 7.44163 16.007 7.65337C16.007 7.8651 15.9287 8.06934 15.787 8.22674C15.6454 8.38414 15.4506 8.48357 15.24 8.50585Z"
+                      fill="#321FFF"
+                    />
+                  </svg>
+                </div>
+
+                <div
+                  style={{
+                    width: "3vw",
+                    height: "3vw",
+                    borderRadius: "3vw",
+                    backgroundColor: "#CCC7FF",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 30 30"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M18.9 6.65004H21.25V2.67504C20.1122 2.55672 18.969 2.49831 17.825 2.50004C14.425 2.50004 12.1 4.57504 12.1 8.37504V11.65H8.26251V16.1H12.1V27.5H16.7V16.1H20.525L21.1 11.65H16.7V8.81254C16.7 7.50004 17.05 6.65004 18.9 6.65004Z"
+                      fill="#321FFF"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
   );
 };
 

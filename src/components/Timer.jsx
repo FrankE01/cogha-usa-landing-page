@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Timer = () => {
+const Timer = ({ deadline }) => {
   const [months, setmonths] = useState(0);
   const [weeks, setweeks] = useState(0);
   const [days, setdays] = useState(0);
@@ -8,8 +8,38 @@ const Timer = () => {
   const [minutes, setminutes] = useState(0);
   const [seconds, setseconds] = useState(0);
 
+  const textStyle = {
+    large: {
+      color: "#aaaaaa",
+      fontFamily: "Quicksand var",
+      fontSize: "1vw",
+      fontWeight: "600",
+    },
+    small: {
+      color: "#aaaaaa",
+      fontFamily: "Quicksand var",
+      fontSize: "12px",
+      fontWeight: "600",
+    },
+  };
+
+  const clockStyle = {
+    large: {
+      color: "#ffffff",
+      fontFamily: "Josephin Sans",
+      fontWeight: "600",
+      fontSize: "4.3vw",
+    },
+    small: {
+      fontFamily: "Josephin Sans",
+      fontSize: "40px",
+      fontWeight: "600",
+      color: "#ffffff",
+    },
+  };
+
   useEffect(() => {
-    let countDownDate = new Date("Apr 1, 2023 12:00:00").getTime();
+    let countDownDate = new Date(deadline).getTime();
 
     let countDown = () => {
       let now = new Date().getTime();
@@ -39,20 +69,95 @@ const Timer = () => {
     const interval = setInterval(() => countDown(), 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [deadline]);
 
   return (
-    <p
-      style={{
-        color: "#ffffff",
-        fontFamily: "Josephin Sans",
-        fontWeight: "600",
-        fontSize: "64px",
-      }}
-    >
-      {months < 10 ? "0" + months : months}:{weeks < 10 ? "0" + weeks : weeks}:
-      {days < 10 ? "0" + days : days}:{hours < 10 ? "0" + hours : hours}
-    </p>
+    <>
+      <p style={window.innerWidth < 500 ? clockStyle.small : clockStyle.large}>
+        {months <= 0 && weeks <= 0 && days < 10
+          ? "0" + days
+          : months <= 0 && weeks <= 0
+          ? days
+          : months <= 0 && weeks < 10
+          ? "0" + weeks
+          : months <= 0
+          ? weeks
+          : months < 10
+          ? "0" + months
+          : months}
+        :
+        {months <= 0 && weeks <= 0 && hours < 10
+          ? "0" + hours
+          : months <= 0 && weeks <= 0
+          ? hours
+          : months <= 0 && days < 10
+          ? "0" + days
+          : months <= 0
+          ? days
+          : weeks < 10
+          ? "0" + weeks
+          : weeks}
+        :
+        {months <= 0 && weeks <= 0 && minutes < 10
+          ? "0" + minutes
+          : months <= 0 && weeks <= 0
+          ? minutes
+          : months <= 0 && hours < 10
+          ? "0" + hours
+          : months <= 0
+          ? hours
+          : days < 10
+          ? "0" + days
+          : days}
+        :
+        {months <= 0 && weeks <= 0 && seconds < 10
+          ? "0" + seconds
+          : months <= 0 && weeks <= 0
+          ? seconds
+          : months <= 0 && minutes < 10
+          ? "0" + minutes
+          : months <= 0
+          ? minutes
+          : hours < 10
+          ? "0" + hours
+          : hours}
+      </p>
+      <div
+        className={window.innerWidth < 500 ? "-mt-3" : "-mt-5 ml-2"}
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          width: window.innerWidth < 500 ? "200px" : "20vw",
+          textAlign: "center",
+        }}
+      >
+        <p style={window.innerWidth < 500 ? textStyle.small : textStyle.large}>
+          {months <= 0 && weeks <= 0
+            ? "Days"
+            : months <= 0
+            ? "Weeks"
+            : "Months"}
+        </p>
+        <p style={window.innerWidth < 500 ? textStyle.small : textStyle.large}>
+          {months <= 0 && weeks <= 0 ? "Hours" : months <= 0 ? "Days" : "Weeks"}
+        </p>
+        <p style={window.innerWidth < 500 ? textStyle.small : textStyle.large}>
+          {months <= 0 && weeks <= 0
+            ? "Minutes"
+            : months <= 0
+            ? "Hours"
+            : "Days"}
+        </p>
+        <p style={window.innerWidth < 500 ? textStyle.small : textStyle.large}>
+          {months <= 0 && weeks <= 0
+            ? "Seconds"
+            : months <= 0
+            ? "Minutes"
+            : "Hours"}
+        </p>
+      </div>
+    </>
   );
 };
 
