@@ -5,6 +5,7 @@ import { StaticImage } from "gatsby-plugin-image";
 import { useScroll } from "./useScroll";
 import "../styles/Sidebar.css";
 import SidebarLink from "./SidebarLink";
+import { Link as ScrollLink } from "react-scroll";
 
 const Sidebar = () => {
   const { scrollDirection } = useScroll();
@@ -86,10 +87,29 @@ const Sidebar = () => {
         noOverlay
       >
         <div id="page-wrap">
-          <SidebarLink>Home</SidebarLink>
-          <SidebarLink>What We Do</SidebarLink>
-          <SidebarLink>Gallery</SidebarLink>
-          <SidebarLink>Get In Touch</SidebarLink>
+          <ScrollLink to="home" spy smooth activeClass="active">
+            <Link to="/#home">
+              <SidebarLink>Home</SidebarLink>
+            </Link>
+          </ScrollLink>
+          <ScrollLink to="whatWeDo" spy smooth>
+            <Link to="/#whatWeDo">
+              <SidebarLink>What We Do</SidebarLink>
+            </Link>
+          </ScrollLink>
+          <ScrollLink to="gallery" spy smooth>
+            <Link to="/#gallery">
+              <SidebarLink>Gallery</SidebarLink>
+            </Link>
+          </ScrollLink>
+          <ScrollLink to="getInTouch" spy smooth>
+            <Link to="/#getInTouch">
+              <SidebarLink>Get In Touch</SidebarLink>
+            </Link>
+          </ScrollLink>
+          <Link to="/articles">
+            <SidebarLink>Articles</SidebarLink>
+          </Link>
         </div>
       </Menu>
     </div>

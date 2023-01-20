@@ -26,10 +26,11 @@
 .bm-menu-wrap {
   position: fixed;
   height: 100%;
+  top: 0;
 }
 
 .bm-menu {
-  background: #000000aa;
+  background: #000000ee;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
 }

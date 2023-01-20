@@ -1,10 +1,11 @@
 import { Link } from "gatsby";
+import { Link as ScrollLink } from "react-scroll";
 import { StaticImage } from "gatsby-plugin-image";
 import NavLink from "./NavLink";
 import { useScroll } from "./useScroll";
 import React from "react";
 
-const Navbar = () => {
+const Navbar = ({ homeRef }) => {
   const { scrollDirection } = useScroll();
 
   const styles = {
@@ -84,10 +85,29 @@ const Navbar = () => {
           width: "450px",
         }}
       >
-        <NavLink>Home</NavLink>
-        <NavLink>What We Do</NavLink>
-        <NavLink>Gallery</NavLink>
-        <NavLink>Get In Touch</NavLink>
+        <ScrollLink to="home" spy smooth activeClass="active">
+          <Link to="/#home">
+            <NavLink>Home</NavLink>
+          </Link>
+        </ScrollLink>
+        <ScrollLink to="whatWeDo" spy smooth>
+          <Link to="/#whatWeDo">
+            <NavLink>What We Do</NavLink>
+          </Link>
+        </ScrollLink>
+        <ScrollLink to="gallery" spy smooth>
+          <Link to="/#gallery">
+            <NavLink>Gallery</NavLink>
+          </Link>
+        </ScrollLink>
+        <ScrollLink to="getInTouch" spy smooth>
+          <Link to="/#getInTouch">
+            <NavLink>Get In Touch</NavLink>
+          </Link>
+        </ScrollLink>
+        <Link to="/articles">
+          <NavLink>Articles</NavLink>
+        </Link>
       </div>
     </nav>
   );

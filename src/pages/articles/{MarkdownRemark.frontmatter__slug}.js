@@ -1,307 +1,98 @@
-import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
-import { Link as ScrollLink } from "react-scroll";
-import { Link } from "gatsby";
-import NavLink from "../components/NavLink";
-import headerbg from "../images/coghabg.png";
-import Gallery from "../components/Gallery";
-import Navbar from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
-import HeaderGrid from "../components/HeaderGrid";
-import HeaderText from "../components/HeaderText";
-import FeaturedEvent from "../components/FeaturedEvent";
-import FeaturedEventSmall from "../components/FeaturedEventSmall";
+import { graphql, Link } from "gatsby";
+import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
+import NavLink from "../../components/NavLink";
+import Navbar from "../../components/Navbar";
+import Sidebar from "../../components/Sidebar";
 
-const Mainpage = () => {
+const ArticlePostPage = ({ data }) => {
+  const post = data.markdownRemark.frontmatter;
+  const myPostImage = getImage(post.post_image);
+
   return (
     <div>
-      <main>
-        <header
-          id="home"
+      {window.innerWidth < 500 ? <Sidebar /> : <Navbar />}
+      <div style={{ position: "relative", top: " 120px" }}>
+        <p
           style={{
-            height: window.innerWidth < 500 ? "450px" : "650px",
-            backgroundImage: `url(${headerbg})`,
-            backgroundSize: `100vw`,
+            fontFamily: "Inter var",
+            fontSize: window.innerWidth < 500 ? "30px" : "48px",
+            fontWeight: "500",
+            textAlign: "center",
           }}
         >
-          {window.innerWidth < 500 ? <Sidebar /> : <Navbar />}
+          {post.title}
+        </p>
+        <p
+          style={{
+            fontFamily: "Inter var",
+            fontSize: "24px",
+            textAlign: "center",
+          }}
+        >
+          {post.date}
+        </p>
 
-          {window.innerWidth < 500 ? <HeaderText /> : <HeaderGrid />}
-        </header>
-        <section className="w-full py-10 px-10 mx-auto" id="whatWeDo">
-          {window.innerWidth < 500 ? <FeaturedEventSmall /> : <FeaturedEvent />}
+        <div
+          style={{ display: "flex", justifyContent: "center", margin: "60px" }}
+        >
+          {/* <GatsbyImage src={myPostImage} /> */}
+          <StaticImage src="../../images/image25.jpg" alt="image25" />
+          <p>{myPostImage}</p>
+        </div>
 
-          <div
-            className="my-24"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-around",
-              flexDirection: window.innerWidth < 500 ? "column" : "row",
-              gap: window.innerWidth < 500 ? "200px" : "0",
-            }}
-          >
-            <StaticImage
-              src="../images/wwd_image.png"
-              alt="what we do"
-              placeholder="blurred"
-              style={{ width: window.innerWidth < 500 ? "250px" : "30vw" }}
-            />
-            <div
-              style={{
-                width: window.innerWidth < 500 ? "250px" : "30vw",
-                display: "flex",
-                flexDirection: "column",
-                height: "300px",
-                justifyContent: "space-around",
-                gap: "20px",
-              }}
-            >
-              <p
-                style={{
-                  fontFamily: "Quicksand var",
-                  fontWeight: "700",
-                  fontSize: "36px",
-                }}
-              >
-                What We Do
-              </p>
-              <p
-                style={{
-                  fontFamily: "Inter var",
-                  fontSize: "16px",
-                }}
-              >
-                The Celebration of Ghanaian Arts COGHA, USA is a festival of
-                Arts and Culture aimed at promoting Ghana to the North American
-                community specifically and the international community
-                generally. It goes without saying that one of the greatest
-                ambassadors of Ghanaian Culture has been its Arts and Culture.
-                Enter COGHA, with our drive and ambition to put Ghana at the
-                centre of the world’s arts and cultural ecosystem, we have
-                modeled this festival to harness and exhibit the vast arts
-                talents that the country boasts of by giving them the medium to
-                show to the world their God-given talents every year in June. We
-                own the summer! Think summer, think COGHAFEST!
-              </p>
-            </div>
-          </div>
-        </section>
-        <section className="w-full py-10 px-10 mx-auto" id="gallery">
+        <p
+          className="mx-auto my-24"
+          style={{
+            fontFamily: "Inter var",
+            fontSize: "16px",
+            width: "80vw",
+          }}
+          dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+        />
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "baseline",
+            justifyContent: "center",
+            margin: window.innerWidth < 500 ? "20px" : "100px",
+          }}
+        >
           <p
             style={{
               fontFamily: "Quicksand var",
-              fontWeight: "700",
-              fontSize: "36px",
-              textAlign: "center",
+              fontWeight: "600",
+              fontSize: window.innerWidth < 500 ? "40px" : "64px",
             }}
           >
-            Photo Gallery
+            Next Article
           </p>
-
-          <Gallery />
-        </section>
-        <section className="w-full py-10 px-10 mx-auto" id="getInTouch">
           <div
             style={{
               display: "flex",
-              flexDirection: window.innerWidth < 500 ? "column-reverse" : "row",
-              justifyContent: "space-around",
-              alignItems: "center",
-              gap: window.innerWidth < 500 ? "100px" : "",
+              alignItems: window.innerWidth < 500 ? "center" : "baseline",
+              position: "relative",
+              top: window.innerWidth < 500 ? "22px" : "16px",
+              width: window.innerWidth < 500 ? "60px" : "",
             }}
           >
-            <form>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "15px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: window.innerWidth < 500 ? "column" : "row",
-                    gap: "30px",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "5px",
-                    }}
-                  >
-                    <label
-                      htmlFor="fname"
-                      style={{
-                        fontFamily: "Inter var",
-                        fontWeight: "600",
-                        fontSize: "16px",
-                      }}
-                    >
-                      First Name
-                    </label>
-                    <input
-                      className="px-3"
-                      type={"text"}
-                      id="fname"
-                      name="fname"
-                      style={{
-                        width: window.innerWidth < 500 ? "250px" : "13vw",
-                        height: "40px",
-                        border: "2px solid #888888",
-                        backgroundColor: "#eeeeee",
-                        borderRadius: "10px",
-                      }}
-                    />
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      gap: "5px",
-                    }}
-                  >
-                    <label
-                      htmlFor="lname"
-                      style={{
-                        fontFamily: "Inter var",
-                        fontWeight: "600",
-                        fontSize: "16px",
-                      }}
-                    >
-                      Last Name
-                    </label>
-                    <input
-                      className="px-3"
-                      type={"text"}
-                      id="lname"
-                      name="lname"
-                      style={{
-                        width: window.innerWidth < 500 ? "250px" : "13vw",
-                        height: "40px",
-                        border: "2px solid #888888",
-                        backgroundColor: "#eeeeee",
-                        borderRadius: "10px",
-                      }}
-                    />
-                  </div>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "5px",
-                  }}
-                >
-                  <label
-                    htmlFor="email"
-                    style={{
-                      fontFamily: "Inter var",
-                      fontWeight: "600",
-                      fontSize: "16px",
-                    }}
-                  >
-                    Email
-                  </label>
-                  <input
-                    className="px-3"
-                    type="email"
-                    id="email"
-                    name="email"
-                    style={{
-                      width: window.innerWidth < 500 ? "250px" : "28vw",
-                      height: "40px",
-                      border: "2px solid #888888",
-                      backgroundColor: "#eeeeee",
-                      borderRadius: "10px",
-                    }}
-                  />
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "5px",
-                  }}
-                >
-                  <label
-                    htmlFor="message"
-                    style={{
-                      fontFamily: "Inter var",
-                      fontWeight: "600",
-                      fontSize: "16px",
-                    }}
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    name="message"
-                    id="message"
-                    className="px-3 py-1"
-                    style={{
-                      width: window.innerWidth < 500 ? "250px" : "28vw",
-                      height: "80px",
-                      border: "2px solid #888888",
-                      backgroundColor: "#eeeeee",
-                      borderRadius: "10px",
-                    }}
-                  />
-                </div>
-                <button
-                  style={{
-                    backgroundColor: "#321FFF",
-                    color: "#ffffff",
-                    width: window.innerWidth < 500 ? "20vw" : "150px",
-                    height: window.innerWidth < 500 ? "5vw" : "50px",
-                    padding: window.innerWidth < 500 ? "5vw" : "20px",
-                    borderRadius: window.innerWidth < 500 ? "3vw" : "20px",
-                    fontFamily: "Inter var",
-                    fontWeight: "700",
-                    fontSize: window.innerWidth < 500 ? "4vw" : "16px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    display: "flex",
-                  }}
-                >
-                  Submit
-                </button>
-              </div>
-            </form>
-            <div style={{ textAlign: "right" }}>
-              <p
-                style={{
-                  fontFamily: "Quicksand var",
-                  fontWeight: "700",
-                  fontSize: "36px",
-                }}
-              >
-                Get In Touch
-              </p>
-              <div style={{ fontFamily: "Inter var" }}>
-                <p style={{ fontWeight: "600", padding: "20px 0" }}>
-                  Send us a message or give your feedback
-                </p>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "15px",
-                  }}
-                >
-                  <div>
-                    <p>5901 Kingstowne village parkway, STE201,</p>
-                    <p> Alexandria, VA, United States, Virginia</p>
-                  </div>
-                  <p>+1 301-653-3298</p>
-                  <p>originalcogausa@gmail.com</p>
-                </div>
-              </div>
-            </div>
+            <svg
+              width="72"
+              height="72"
+              viewBox="0 0 72 72"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M60 36L62.1213 33.8787L64.2426 36L62.1213 38.1213L60 36ZM26 39C24.3431 39 23 37.6569 23 36C23 34.3431 24.3431 33 26 33V39ZM44.1213 15.8787L62.1213 33.8787L57.8787 38.1213L39.8787 20.1213L44.1213 15.8787ZM62.1213 38.1213L44.1213 56.1213L39.8787 51.8787L57.8787 33.8787L62.1213 38.1213ZM60 39H26V33H60V39Z"
+                fill="black"
+              />
+            </svg>
           </div>
-        </section>
+        </div>
+
         <hr style={{ width: "80vw" }} className="mx-auto" />
         <section
           className="w-full pt-10 pb-2 px-10 mx-auto"
@@ -317,7 +108,7 @@ const Mainpage = () => {
           >
             <StaticImage
               alt="cogha"
-              src="../images/cogha.png"
+              src="../../images/cogha.png"
               placeholder="blurred"
             />
           </div>
@@ -336,18 +127,18 @@ const Mainpage = () => {
                   width: "450px",
                 }}
               >
-                <ScrollLink to="home" spy smooth>
+                <Link to="/#home" spy smooth>
                   <NavLink>Home</NavLink>
-                </ScrollLink>
-                <ScrollLink to="whatWeDo" spy smooth>
+                </Link>
+                <Link to="/#whatWeDo" spy smooth>
                   <NavLink>What We Do</NavLink>
-                </ScrollLink>
-                <ScrollLink to="gallery" spy smooth>
+                </Link>
+                <Link to="/#gallery" spy smooth>
                   <NavLink>Gallery</NavLink>
-                </ScrollLink>
-                <ScrollLink to="getInTouch" spy smooth activeClass="active">
+                </Link>
+                <Link to="/#getInTouch" spy smooth activeClass="active">
                   <NavLink>Get In Touch</NavLink>
-                </ScrollLink>
+                </Link>
                 <Link to="/articles">
                   <NavLink>Articles</NavLink>
                 </Link>
@@ -437,11 +228,22 @@ const Mainpage = () => {
             </div>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 };
 
-export const Head = () => <title>COGHA USA</title>;
+export default ArticlePostPage;
 
-export default Mainpage;
+export const pageQuery = graphql`
+  query ($id: String) {
+    markdownRemark(id: { eq: $id }) {
+      frontmatter {
+        date(formatString: "MMMM DD, YYYY")
+        title
+        post_image
+      }
+      html
+    }
+  }
+`;
