@@ -1,5 +1,5 @@
 import { StaticImage } from "gatsby-plugin-image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import headerbg1 from "../images/coghabg1.jpg";
 import { Link } from "gatsby";
@@ -7,6 +7,14 @@ import NavLink from "../components/NavLink";
 import Sidebar from "../components/Sidebar";
 
 const ArticlesPage = () => {
+  const [innerWidth, setInnerWidth] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      setInnerWidth(window.innerWidth);
+    }
+  });
+
   return (
     <main>
       <header
@@ -16,13 +24,13 @@ const ArticlesPage = () => {
           backgroundSize: `100vw`,
         }}
       >
-        {window.innerWidth < 500 ? <Sidebar /> : <Navbar />}
+        {innerWidth < 500 ? <Sidebar /> : <Navbar />}
 
         <div className="mx-auto" style={{ position: "relative", top: "120px" }}>
           <p
             style={{
               fontFamily: "Macondo Regular",
-              fontSize: window.innerWidth < 500 ? "60px" : "4vw",
+              fontSize: innerWidth < 500 ? "60px" : "4vw",
               textAlign: "center",
               textTransform: "uppercase",
             }}
@@ -32,7 +40,7 @@ const ArticlesPage = () => {
           <p
             style={{
               fontFamily: "Inter var",
-              fontSize: window.innerWidth < 500 ? "16px" : "1.5vw",
+              fontSize: innerWidth < 500 ? "16px" : "1.5vw",
               textAlign: "center",
               fontWeight: "500",
               position: "relative",
@@ -47,10 +55,10 @@ const ArticlesPage = () => {
       <section className="w-full py-10 px-10 mx-auto">
         <Link to="/articles/cogha-usa-a-new-paradigm">
           <div
-            className={window.innerWidth < 500 ? "mx-auto" : ""}
+            className={innerWidth < 500 ? "mx-auto" : ""}
             style={{
-              margin: window.innerWidth < 500 ? "" : "30px",
-              width: window.innerWidth < 500 ? "300px" : "350px",
+              margin: innerWidth < 500 ? "" : "30px",
+              width: innerWidth < 500 ? "300px" : "350px",
               display: "inline-block",
             }}
           >
@@ -59,7 +67,7 @@ const ArticlesPage = () => {
                 src="../images/image 24.jpg"
                 alt="articleImage"
                 placeholder="blurred"
-                //   style={{ width: window.innerWidth < 500 ? "250px" : "30vw" }}
+                //   style={{ width: innerWidth < 500 ? "250px" : "30vw" }}
               />
             </div>
             <p
@@ -97,7 +105,7 @@ const ArticlesPage = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-            width: window.innerWidth < 500 ? "50vw" : "",
+            width: innerWidth < 500 ? "50vw" : "",
           }}
         >
           <StaticImage
@@ -116,7 +124,7 @@ const ArticlesPage = () => {
           >
             <div
               style={{
-                display: window.innerWidth < 500 ? "none" : "flex",
+                display: innerWidth < 500 ? "none" : "flex",
                 justifyContent: "space-between",
                 width: "450px",
               }}
@@ -138,14 +146,14 @@ const ArticlesPage = () => {
               </Link>
             </div>
             <div
-              className={window.innerWidth < 500 ? "mx-auto" : ""}
+              className={innerWidth < 500 ? "mx-auto" : ""}
               style={{ display: "flex", flexDirection: "row", gap: "3vw" }}
             >
               <div
                 style={{
-                  width: window.innerWidth < 500 ? "30px" : "3vw",
-                  height: window.innerWidth < 500 ? "30px" : "3vw",
-                  borderRadius: window.innerWidth < 500 ? "30px" : "3vw",
+                  width: innerWidth < 500 ? "30px" : "3vw",
+                  height: innerWidth < 500 ? "30px" : "3vw",
+                  borderRadius: innerWidth < 500 ? "30px" : "3vw",
                   padding: "5px",
                   backgroundColor: "#CCC7FF",
                   display: "flex",
@@ -169,9 +177,9 @@ const ArticlesPage = () => {
 
               <div
                 style={{
-                  width: window.innerWidth < 500 ? "30px" : "3vw",
-                  height: window.innerWidth < 500 ? "30px" : "3vw",
-                  borderRadius: window.innerWidth < 500 ? "30px" : "3vw",
+                  width: innerWidth < 500 ? "30px" : "3vw",
+                  height: innerWidth < 500 ? "30px" : "3vw",
+                  borderRadius: innerWidth < 500 ? "30px" : "3vw",
                   padding: "5px",
                   backgroundColor: "#CCC7FF",
                   display: "flex",
@@ -195,9 +203,9 @@ const ArticlesPage = () => {
 
               <div
                 style={{
-                  width: window.innerWidth < 500 ? "30px" : "3vw",
-                  height: window.innerWidth < 500 ? "30px" : "3vw",
-                  borderRadius: window.innerWidth < 500 ? "30px" : "3vw",
+                  width: innerWidth < 500 ? "30px" : "3vw",
+                  height: innerWidth < 500 ? "30px" : "3vw",
+                  borderRadius: innerWidth < 500 ? "30px" : "3vw",
                   padding: "5px",
                   backgroundColor: "#CCC7FF",
                   display: "flex",

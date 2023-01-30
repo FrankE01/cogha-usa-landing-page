@@ -1,5 +1,5 @@
 import { StaticImage } from "gatsby-plugin-image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { Link } from "gatsby";
 import NavLink from "../components/NavLink";
@@ -13,23 +13,31 @@ import FeaturedEvent from "../components/FeaturedEvent";
 import FeaturedEventSmall from "../components/FeaturedEventSmall";
 
 const Mainpage = () => {
+  const [innerWidth, setInnerWidth] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      setInnerWidth(window.innerWidth);
+    }
+  }, []);
+
   return (
     <div>
       <main>
         <header
           id="home"
           style={{
-            height: window.innerWidth < 500 ? "450px" : "650px",
+            height: innerWidth > 500 ? "650px" : "450px",
             backgroundImage: `url(${headerbg})`,
             backgroundSize: `100vw`,
           }}
         >
-          {window.innerWidth < 500 ? <Sidebar /> : <Navbar />}
+          {innerWidth > 500 ? <Navbar /> : <Sidebar />}
 
-          {window.innerWidth < 500 ? <HeaderText /> : <HeaderGrid />}
+          {innerWidth > 500 ? <HeaderGrid /> : <HeaderText />}
         </header>
         <section className="w-full py-10 px-10 mx-auto" id="whatWeDo">
-          {window.innerWidth < 500 ? <FeaturedEventSmall /> : <FeaturedEvent />}
+          {innerWidth > 500 ? <FeaturedEvent /> : <FeaturedEventSmall />}
 
           <div
             className="my-24"
@@ -37,19 +45,19 @@ const Mainpage = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-around",
-              flexDirection: window.innerWidth < 500 ? "column" : "row",
-              gap: window.innerWidth < 500 ? "200px" : "0",
+              flexDirection: innerWidth > 500 ? "row" : "column",
+              gap: innerWidth > 500 ? "0" : "200px",
             }}
           >
             <StaticImage
               src="../images/wwd_image.png"
               alt="what we do"
               placeholder="blurred"
-              style={{ width: window.innerWidth < 500 ? "250px" : "30vw" }}
+              style={{ width: innerWidth > 500 ? "30vw" : "250px" }}
             />
             <div
               style={{
-                width: window.innerWidth < 500 ? "250px" : "30vw",
+                width: innerWidth > 500 ? "30vw" : "250px",
                 display: "flex",
                 flexDirection: "column",
                 height: "300px",
@@ -105,10 +113,10 @@ const Mainpage = () => {
           <div
             style={{
               display: "flex",
-              flexDirection: window.innerWidth < 500 ? "column-reverse" : "row",
+              flexDirection: innerWidth > 500 ? "row" : "column-reverse",
               justifyContent: "space-around",
               alignItems: "center",
-              gap: window.innerWidth < 500 ? "100px" : "",
+              gap: innerWidth > 500 ? "0" : "100px",
             }}
           >
             <form>
@@ -122,7 +130,7 @@ const Mainpage = () => {
                 <div
                   style={{
                     display: "flex",
-                    flexDirection: window.innerWidth < 500 ? "column" : "row",
+                    flexDirection: innerWidth > 500 ? "row" : "column",
                     gap: "30px",
                   }}
                 >
@@ -149,7 +157,7 @@ const Mainpage = () => {
                       id="fname"
                       name="fname"
                       style={{
-                        width: window.innerWidth < 500 ? "250px" : "13vw",
+                        width: innerWidth > 500 ? "13vw" : "250px",
                         height: "40px",
                         border: "2px solid #888888",
                         backgroundColor: "#eeeeee",
@@ -180,7 +188,7 @@ const Mainpage = () => {
                       id="lname"
                       name="lname"
                       style={{
-                        width: window.innerWidth < 500 ? "250px" : "13vw",
+                        width: innerWidth > 500 ? "13vw" : "250px",
                         height: "40px",
                         border: "2px solid #888888",
                         backgroundColor: "#eeeeee",
@@ -212,7 +220,7 @@ const Mainpage = () => {
                     id="email"
                     name="email"
                     style={{
-                      width: window.innerWidth < 500 ? "250px" : "28vw",
+                      width: innerWidth > 500 ? "28vw" : "250px",
                       height: "40px",
                       border: "2px solid #888888",
                       backgroundColor: "#eeeeee",
@@ -242,7 +250,7 @@ const Mainpage = () => {
                     id="message"
                     className="px-3 py-1"
                     style={{
-                      width: window.innerWidth < 500 ? "250px" : "28vw",
+                      width: innerWidth > 500 ? "28vw" : "250px",
                       height: "80px",
                       border: "2px solid #888888",
                       backgroundColor: "#eeeeee",
@@ -254,13 +262,13 @@ const Mainpage = () => {
                   style={{
                     backgroundColor: "#321FFF",
                     color: "#ffffff",
-                    width: window.innerWidth < 500 ? "20vw" : "150px",
-                    height: window.innerWidth < 500 ? "5vw" : "50px",
-                    padding: window.innerWidth < 500 ? "5vw" : "20px",
-                    borderRadius: window.innerWidth < 500 ? "3vw" : "20px",
+                    width: innerWidth > 500 ? "150px" : "20vw",
+                    height: innerWidth > 500 ? "50px" : "5vw",
+                    padding: innerWidth > 500 ? "20px" : "5vw",
+                    borderRadius: innerWidth > 500 ? "20px" : "3vw",
                     fontFamily: "Inter var",
                     fontWeight: "700",
-                    fontSize: window.innerWidth < 500 ? "4vw" : "16px",
+                    fontSize: innerWidth > 500 ? "16px" : "4vw",
                     alignItems: "center",
                     justifyContent: "center",
                     display: "flex",
@@ -312,7 +320,7 @@ const Mainpage = () => {
             style={{
               display: "flex",
               justifyContent: "center",
-              width: window.innerWidth < 500 ? "50vw" : "",
+              width: innerWidth > 500 ? "" : "50vw",
             }}
           >
             <StaticImage
@@ -331,7 +339,7 @@ const Mainpage = () => {
             >
               <div
                 style={{
-                  display: window.innerWidth < 500 ? "none" : "flex",
+                  display: innerWidth > 500 ? "flex" : "none",
                   justifyContent: "space-between",
                   width: "450px",
                 }}
@@ -353,14 +361,14 @@ const Mainpage = () => {
                 </Link>
               </div>
               <div
-                className={window.innerWidth < 500 ? "mx-auto" : ""}
+                className={innerWidth > 500 ? "" : "mx-auto"}
                 style={{ display: "flex", flexDirection: "row", gap: "3vw" }}
               >
                 <div
                   style={{
-                    width: window.innerWidth < 500 ? "30px" : "3vw",
-                    height: window.innerWidth < 500 ? "30px" : "3vw",
-                    borderRadius: window.innerWidth < 500 ? "30px" : "3vw",
+                    width: innerWidth > 500 ? "3vw" : "30px",
+                    height: innerWidth > 500 ? "3vw" : "30px",
+                    borderRadius: innerWidth > 500 ? "3vw" : "30px",
                     padding: "5px",
                     backgroundColor: "#CCC7FF",
                     display: "flex",
@@ -384,9 +392,9 @@ const Mainpage = () => {
 
                 <div
                   style={{
-                    width: window.innerWidth < 500 ? "30px" : "3vw",
-                    height: window.innerWidth < 500 ? "30px" : "3vw",
-                    borderRadius: window.innerWidth < 500 ? "30px" : "3vw",
+                    width: innerWidth > 500 ? "3vw" : "30px",
+                    height: innerWidth > 500 ? "3vw" : "30px",
+                    borderRadius: innerWidth > 500 ? "3vw" : "30px",
                     padding: "5px",
                     backgroundColor: "#CCC7FF",
                     display: "flex",
@@ -410,9 +418,9 @@ const Mainpage = () => {
 
                 <div
                   style={{
-                    width: window.innerWidth < 500 ? "30px" : "3vw",
-                    height: window.innerWidth < 500 ? "30px" : "3vw",
-                    borderRadius: window.innerWidth < 500 ? "30px" : "3vw",
+                    width: innerWidth > 500 ? "3vw" : "30px",
+                    height: innerWidth > 500 ? "3vw" : "30px",
+                    borderRadius: innerWidth > 500 ? "3vw" : "30px",
                     padding: "5px",
                     backgroundColor: "#CCC7FF",
                     display: "flex",

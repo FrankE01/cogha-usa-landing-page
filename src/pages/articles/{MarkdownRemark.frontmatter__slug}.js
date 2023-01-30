@@ -1,25 +1,137 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { graphql, Link } from "gatsby";
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
 import NavLink from "../../components/NavLink";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
+// const isBrowser = typeof window !== undefined;
+
 const ArticlePostPage = ({ data }) => {
   const post = data.markdownRemark.frontmatter;
   const myPostImage = getImage(post.post_image);
 
+  const [windowWidth, setwindowWidth] = useState();
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      setwindowWidth(window.innerWidth);
+    }
+  }, []);
+
   return (
     <div>
-      {window.innerWidth < 500 ? <Sidebar /> : <Navbar />}
+      {windowWidth < 500 ? <Sidebar /> : <Navbar />}
+      {/* <Link to="/articles">
+        <div
+          style={{ display: "flex", alignItems: "center", marginTop: "20px" }}
+        >
+          <div
+            style={{
+              transform: `rotate(180deg)`,
+              marginLeft: "20px",
+            }}
+          >
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 72 72"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M60 36L62.1213 33.8787L64.2426 36L62.1213 38.1213L60 36ZM26 39C24.3431 39 23 37.6569 23 36C23 34.3431 24.3431 33 26 33V39ZM44.1213 15.8787L62.1213 33.8787L57.8787 38.1213L39.8787 20.1213L44.1213 15.8787ZM62.1213 38.1213L44.1213 56.1213L39.8787 51.8787L57.8787 33.8787L62.1213 38.1213ZM60 39H26V33H60V39Z"
+                fill="black"
+              />
+            </svg>
+          </div>
+          <p
+            style={{
+              fontSize: "24px",
+              fontWeight: "500",
+              fontFamily: "Inter var",
+              position: "relative",
+              // top: "2px",
+            }}
+          >
+            Back
+          </p>
+        </div>
+      </Link> */}
       <div style={{ position: "relative", top: " 120px" }}>
+        <style>
+          {`@media screen and (max-width: 500px){
+  #post_title {
+    font-family: Inter var;
+            font-size: 30px;
+            font-weight: 500;
+            text-align: center;
+  }
+
+  #next_div{
+    margin: 20px
+  }
+  #next_article{
+    font-size: 40px
+  }
+  #arrow{
+    align-items: center;
+    top: 22px;
+    width: 60px;
+  }
+  #cogha{
+    width: 50vw
+  }
+  #bottom_nav{
+    display: none
+  }
+  #social_group{
+    margin: auto
+  }
+  .social_div{
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  #post_title {
+    font-family: Inter var;
+            font-size: 48px;
+            font-weight: 500;
+            text-align: center;
+  }
+
+  #next_div{
+    margin: 100px
+  }
+  #next_article{
+    font-size: 64px
+  }
+  #arrow{
+    align-items: baseline;
+    top: 16px;
+  }
+  #bottom_nav{
+    display: flex
+  }
+  .social_div{
+    width: 3vw;
+    height: 3vw;
+    border-radius: 3vw;
+  }
+}
+`}
+        </style>
         <p
-          style={{
-            fontFamily: "Inter var",
-            fontSize: window.innerWidth < 500 ? "30px" : "48px",
-            fontWeight: "500",
-            textAlign: "center",
-          }}
+          id="post_title"
+          // style={{
+          //   fontFamily: "Inter var",
+          //   fontSize: isBrowser && window?.innerWidth < 500 ? "30px" : "48px",
+          //   fontWeight: "500",
+          //   textAlign: "center",
+          // }}
         >
           {post.title}
         </p>
@@ -52,30 +164,34 @@ const ArticlePostPage = ({ data }) => {
         />
 
         <div
+          id="next_div"
           style={{
             display: "flex",
             flexDirection: "row",
             alignItems: "baseline",
             justifyContent: "center",
-            margin: window.innerWidth < 500 ? "20px" : "100px",
+            // margin: isBrowser && window?.innerWidth < 500 ? "20px" : "100px",
           }}
         >
           <p
+            id="next_article"
             style={{
               fontFamily: "Quicksand var",
               fontWeight: "600",
-              fontSize: window.innerWidth < 500 ? "40px" : "64px",
+              // fontSize: isBrowser && window?.innerWidth < 500 ? "40px" : "64px",
             }}
           >
             Next Article
           </p>
           <div
+            id="arrow"
             style={{
               display: "flex",
-              alignItems: window.innerWidth < 500 ? "center" : "baseline",
+              // alignItems:
+              //   isBrowser && window?.innerWidth < 500 ? "center" : "baseline",
               position: "relative",
-              top: window.innerWidth < 500 ? "22px" : "16px",
-              width: window.innerWidth < 500 ? "60px" : "",
+              // top: isBrowser && window?.innerWidth < 500 ? "22px" : "16px",
+              // width: isBrowser && window?.innerWidth < 500 ? "60px" : "",
             }}
           >
             <svg
@@ -99,11 +215,12 @@ const ArticlePostPage = ({ data }) => {
           style={{ display: "flex", flexDirection: "column", gap: "60px" }}
         >
           <div
+            id="cogha"
             className="mx-auto"
             style={{
               display: "flex",
               justifyContent: "center",
-              width: window.innerWidth < 500 ? "50vw" : "",
+              // width: isBrowser && window?.innerWidth < 500 ? "50vw" : "",
             }}
           >
             <StaticImage
@@ -121,8 +238,10 @@ const ArticlePostPage = ({ data }) => {
               }}
             >
               <div
+                id="bottom_nav"
                 style={{
-                  display: window.innerWidth < 500 ? "none" : "flex",
+                  // display:
+                  //   isBrowser && window?.innerWidth < 500 ? "none" : "flex",
                   justifyContent: "space-between",
                   width: "450px",
                 }}
@@ -144,14 +263,23 @@ const ArticlePostPage = ({ data }) => {
                 </Link>
               </div>
               <div
-                className={window.innerWidth < 500 ? "mx-auto" : ""}
-                style={{ display: "flex", flexDirection: "row", gap: "3vw" }}
+                id="social_group"
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "3vw",
+                  // margin: isBrowser && window?.innerWidth < 500 ? "auto" : "",
+                }}
               >
                 <div
+                  className="social_div"
                   style={{
-                    width: window.innerWidth < 500 ? "30px" : "3vw",
-                    height: window.innerWidth < 500 ? "30px" : "3vw",
-                    borderRadius: window.innerWidth < 500 ? "30px" : "3vw",
+                    // width:
+                    //   isBrowser && window?.innerWidth < 500 ? "30px" : "3vw",
+                    // height:
+                    //   isBrowser && window?.innerWidth < 500 ? "30px" : "3vw",
+                    // borderRadius:
+                    //   isBrowser && window?.innerWidth < 500 ? "30px" : "3vw",
                     padding: "5px",
                     backgroundColor: "#CCC7FF",
                     display: "flex",
@@ -174,10 +302,14 @@ const ArticlePostPage = ({ data }) => {
                 </div>
 
                 <div
+                  className="social_div"
                   style={{
-                    width: window.innerWidth < 500 ? "30px" : "3vw",
-                    height: window.innerWidth < 500 ? "30px" : "3vw",
-                    borderRadius: window.innerWidth < 500 ? "30px" : "3vw",
+                    // width:
+                    //   isBrowser && window?.innerWidth < 500 ? "30px" : "3vw",
+                    // height:
+                    //   isBrowser && window?.innerWidth < 500 ? "30px" : "3vw",
+                    // borderRadius:
+                    //   isBrowser && window?.innerWidth < 500 ? "30px" : "3vw",
                     padding: "5px",
                     backgroundColor: "#CCC7FF",
                     display: "flex",
@@ -200,10 +332,14 @@ const ArticlePostPage = ({ data }) => {
                 </div>
 
                 <div
+                  className="social_div"
                   style={{
-                    width: window.innerWidth < 500 ? "30px" : "3vw",
-                    height: window.innerWidth < 500 ? "30px" : "3vw",
-                    borderRadius: window.innerWidth < 500 ? "30px" : "3vw",
+                    // width:
+                    //   isBrowser && window?.innerWidth < 500 ? "30px" : "3vw",
+                    // height:
+                    //   isBrowser && window?.innerWidth < 500 ? "30px" : "3vw",
+                    // borderRadius:
+                    //   isBrowser && window?.innerWidth < 500 ? "30px" : "3vw",
                     padding: "5px",
                     backgroundColor: "#CCC7FF",
                     display: "flex",

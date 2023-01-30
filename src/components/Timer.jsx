@@ -7,6 +7,7 @@ const Timer = ({ deadline }) => {
   const [hours, sethours] = useState(0);
   const [minutes, setminutes] = useState(0);
   const [seconds, setseconds] = useState(0);
+  const [innerWidth, setInnerWidth] = useState(0);
 
   const textStyle = {
     large: {
@@ -26,12 +27,12 @@ const Timer = ({ deadline }) => {
   const clockStyle = {
     large: {
       color: "#ffffff",
-      fontFamily: "Josephin Sans",
+      fontFamily: "Serif",
       fontWeight: "600",
       fontSize: "4.3vw",
     },
     small: {
-      fontFamily: "Josephin Sans",
+      fontFamily: "Serif",
       fontSize: "40px",
       fontWeight: "600",
       color: "#ffffff",
@@ -39,6 +40,10 @@ const Timer = ({ deadline }) => {
   };
 
   useEffect(() => {
+    if (typeof window !== undefined) {
+      setInnerWidth(window.innerWidth);
+    }
+
     let countDownDate = new Date(deadline).getTime();
 
     let countDown = () => {
@@ -73,7 +78,7 @@ const Timer = ({ deadline }) => {
 
   return (
     <>
-      <p style={window.innerWidth < 500 ? clockStyle.small : clockStyle.large}>
+      <p style={innerWidth > 500 ? clockStyle.large : clockStyle.small}>
         {months <= 0 && weeks <= 0 && days < 10
           ? "0" + days
           : months <= 0 && weeks <= 0
@@ -123,33 +128,33 @@ const Timer = ({ deadline }) => {
           : hours}
       </p>
       <div
-        className={window.innerWidth < 500 ? "-mt-3" : "-mt-5 ml-2"}
+        className={innerWidth > 500 ? "-mt-5 ml-2" : "-mt-3"}
         style={{
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          width: window.innerWidth < 500 ? "200px" : "20vw",
+          width: innerWidth > 500 ? "20vw" : "200px",
           textAlign: "center",
         }}
       >
-        <p style={window.innerWidth < 500 ? textStyle.small : textStyle.large}>
+        <p style={innerWidth > 500 ? textStyle.large : textStyle.small}>
           {months <= 0 && weeks <= 0
             ? "Days"
             : months <= 0
             ? "Weeks"
             : "Months"}
         </p>
-        <p style={window.innerWidth < 500 ? textStyle.small : textStyle.large}>
+        <p style={innerWidth > 500 ? textStyle.large : textStyle.small}>
           {months <= 0 && weeks <= 0 ? "Hours" : months <= 0 ? "Days" : "Weeks"}
         </p>
-        <p style={window.innerWidth < 500 ? textStyle.small : textStyle.large}>
+        <p style={innerWidth > 500 ? textStyle.large : textStyle.small}>
           {months <= 0 && weeks <= 0
             ? "Minutes"
             : months <= 0
             ? "Hours"
             : "Days"}
         </p>
-        <p style={window.innerWidth < 500 ? textStyle.small : textStyle.large}>
+        <p style={innerWidth > 500 ? textStyle.large : textStyle.small}>
           {months <= 0 && weeks <= 0
             ? "Seconds"
             : months <= 0

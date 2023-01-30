@@ -28,9 +28,10 @@ const FeaturedEventSmall = () => {
       </div>
 
       <div
+        className="h-content"
         style={{
           width: "70vw",
-          height: "135vw",
+          // height: "135vw",
           backgroundColor: "#000000",
           borderRadius: "40px 40px 40px 40px",
           padding: "5vw",

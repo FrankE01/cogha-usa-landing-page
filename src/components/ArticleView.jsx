@@ -132,7 +132,7 @@ const ArticleView = ({ article }) => {
           style={{
             display: "flex",
             justifyContent: "center",
-            width: window.innerWidth < 500 ? "50vw" : "",
+            width: window?.innerWidth < 500 ? "50vw" : "",
           }}
         >
           <StaticImage
@@ -151,7 +151,7 @@ const ArticleView = ({ article }) => {
           >
             <div
               style={{
-                display: window.innerWidth < 500 ? "none" : "flex",
+                display: window?.innerWidth < 500 ? "none" : "flex",
                 justifyContent: "space-between",
                 width: "450px",
               }}
@@ -173,14 +173,14 @@ const ArticleView = ({ article }) => {
               </Link>
             </div>
             <div
-              className={window.innerWidth < 500 ? "mx-auto" : ""}
+              className={window?.innerWidth < 500 ? "mx-auto" : ""}
               style={{ display: "flex", flexDirection: "row", gap: "3vw" }}
             >
               <div
                 style={{
-                  width: window.innerWidth < 500 ? "30px" : "3vw",
-                  height: window.innerWidth < 500 ? "30px" : "3vw",
-                  borderRadius: window.innerWidth < 500 ? "30px" : "3vw",
+                  width: window?.innerWidth < 500 ? "30px" : "3vw",
+                  height: window?.innerWidth < 500 ? "30px" : "3vw",
+                  borderRadius: window?.innerWidth < 500 ? "30px" : "3vw",
                   padding: "5px",
                   backgroundColor: "#CCC7FF",
                   display: "flex",
@@ -204,9 +204,9 @@ const ArticleView = ({ article }) => {
 
               <div
                 style={{
-                  width: window.innerWidth < 500 ? "30px" : "3vw",
-                  height: window.innerWidth < 500 ? "30px" : "3vw",
-                  borderRadius: window.innerWidth < 500 ? "30px" : "3vw",
+                  width: window?.innerWidth < 500 ? "30px" : "3vw",
+                  height: window?.innerWidth < 500 ? "30px" : "3vw",
+                  borderRadius: window?.innerWidth < 500 ? "30px" : "3vw",
                   padding: "5px",
                   backgroundColor: "#CCC7FF",
                   display: "flex",
@@ -230,9 +230,9 @@ const ArticleView = ({ article }) => {
 
               <div
                 style={{
-                  width: window.innerWidth < 500 ? "30px" : "3vw",
-                  height: window.innerWidth < 500 ? "30px" : "3vw",
-                  borderRadius: window.innerWidth < 500 ? "30px" : "3vw",
+                  width: window?.innerWidth < 500 ? "30px" : "3vw",
+                  height: window?.innerWidth < 500 ? "30px" : "3vw",
+                  borderRadius: window?.innerWidth < 500 ? "30px" : "3vw",
                   padding: "5px",
                   backgroundColor: "#CCC7FF",
                   display: "flex",

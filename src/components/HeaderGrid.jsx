@@ -38,7 +38,7 @@ const HeaderGrid = () => {
       >
         CELEBRATION OF GHANAIAN ARTS
         <ScrollLink to="whatWeDo" spy smooth>
-          <div className="mt-2">
+          <div className="mt-2" style={{ cursor: "pointer" }}>
             <p
               style={{
                 fontFamily: "Quicksand var",

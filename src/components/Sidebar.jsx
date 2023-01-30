@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
@@ -9,6 +9,13 @@ import { Link as ScrollLink } from "react-scroll";
 
 const Sidebar = () => {
   const { scrollDirection } = useScroll();
+  const [pageOffset, setpageOffset] = useState(0);
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      setpageOffset(window.pageYOffset);
+    }
+  });
 
   const styles = {
     active: {
@@ -62,9 +69,9 @@ const Sidebar = () => {
   return (
     <div
       style={
-        scrollDirection === "down" && window.pageYOffset > 60
+        scrollDirection === "down" && pageOffset > 60
           ? styles.active
-          : window.pageYOffset < 60
+          : pageOffset < 60
           ? styles.top
           : styles.hidden
       }
