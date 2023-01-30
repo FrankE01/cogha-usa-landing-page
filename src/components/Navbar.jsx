@@ -1,11 +1,13 @@
 import { Link } from "gatsby";
+import { Link as ScrollLink } from "react-scroll";
 import { StaticImage } from "gatsby-plugin-image";
 import NavLink from "./NavLink";
 import { useScroll } from "./useScroll";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Navbar = () => {
   const { scrollDirection } = useScroll();
+  const [pageOffset, setpageOffset] = useState(0);
 
   const styles = {
     active: {
@@ -56,13 +58,19 @@ const Navbar = () => {
     },
   };
 
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      setpageOffset(window.pageYOffset);
+    }
+  });
+
   return (
     <nav
       className="w-full py-5 px-10 mx-auto"
       style={
-        scrollDirection === "down" && window.pageYOffset > 60
+        scrollDirection === "down" && pageOffset > 60
           ? styles.active
-          : window.pageYOffset < 60
+          : pageOffset < 60
           ? styles.top
           : styles.hidden
       }
@@ -84,10 +92,29 @@ const Navbar = () => {
           width: "450px",
         }}
       >
-        <NavLink>Home</NavLink>
-        <NavLink>What We Do</NavLink>
-        <NavLink>Gallery</NavLink>
-        <NavLink>Get In Touch</NavLink>
+        <ScrollLink to="home" spy smooth activeClass="active">
+          <Link to="/#home">
+            <NavLink>Home</NavLink>
+          </Link>
+        </ScrollLink>
+        <ScrollLink to="whatWeDo" spy smooth>
+          <Link to="/#whatWeDo">
+            <NavLink>What We Do</NavLink>
+          </Link>
+        </ScrollLink>
+        <ScrollLink to="gallery" spy smooth>
+          <Link to="/#gallery">
+            <NavLink>Gallery</NavLink>
+          </Link>
+        </ScrollLink>
+        <ScrollLink to="getInTouch" spy smooth>
+          <Link to="/#getInTouch">
+            <NavLink>Get In Touch</NavLink>
+          </Link>
+        </ScrollLink>
+        <Link to="/articles">
+          <NavLink>Articles</NavLink>
+        </Link>
       </div>
     </nav>
   );

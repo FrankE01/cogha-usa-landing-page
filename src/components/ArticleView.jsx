@@ -1,77 +1,128 @@
-import React, { useState, useEffect } from "react";
-import headerbg1 from "../images/coghabg1.jpg";
-import headerbg2 from "../images/coghabg2.png";
-import { Link as ScrollLink } from "react-scroll";
-import { Link } from "gatsby";
-import NavLink from "../components/NavLink";
 import { StaticImage } from "gatsby-plugin-image";
+import React from "react";
+import { Link } from "gatsby";
+import NavLink from "./NavLink";
 
-const NotFoundPage = () => {
-  const [innerWidth, setInnerWidth] = useState(0);
-
-  useEffect(() => {
-    if (typeof window !== undefined) {
-      setInnerWidth(window.innerWidth);
-    }
-  }, []);
-
+const ArticleView = ({ article }) => {
   return (
-    <main style={{ display: "flex", flexDirection: "column", gap: "100px" }}>
-      <header
+    <div>
+      <p
         style={{
-          height: innerWidth > 500 ? "450px" : "350px",
-          backgroundImage:
-            innerWidth > 500 ? `url(${headerbg2})` : `url(${headerbg1})`,
-          backgroundSize: `100vw`,
+          fontFamily: "Inter var",
+          fontSize: "48px",
+          fontWeight: "500",
           textAlign: "center",
-          alignItems: "center",
-          justifyContent: "center",
+        }}
+      >
+        COGHA, USA. A New Paradigm
+      </p>
+      <p
+        style={{
+          fontFamily: "Inter var",
+          fontSize: "24px",
+          textAlign: "center",
+        }}
+      >
+        December 24, 2022
+      </p>
+
+      <div
+        style={{ display: "flex", justifyContent: "center", margin: "60px" }}
+      >
+        <StaticImage
+          alt="image25"
+          src="../images/image25.jpg"
+          placeholder="blurred"
+        />
+      </div>
+
+      <p
+        className="mx-auto my-24"
+        style={{
+          fontFamily: "Inter var",
+          fontSize: "16px",
+          width: "80vw",
+        }}
+      >
+        On the 10th of December 2022 at the Washington Dulles Marriot Hotel in
+        Washington DC, COGHA, USA was officially launched. The Impressive
+        Ceremony was laced with important personalities from the length and
+        breadth of the United States who honored the invitation to be part of
+        this ground breaking event. Traditional chiefs who are custodians of our
+        rich culture were equally represented in their resplendence. On behalf
+        of Traditional Chiefs, Nana Obuabasa Kwaa Enyinful III, Odzikrow of
+        Ekumfi Swedru in the Ekumfi Traditional Area pledged their absolute
+        support for this initiative and commended the visionary organizers for
+        such foresight. He called on all and sundry to support this initiative
+        in whatever capacity they could because this was an initiative worthy of
+        such. Mr Francis Doku, General Manager of the 3 Group a subsidiary of
+        Media General, Ghana’s biggest Media Company, also aligned with the
+        mission and vision of COGHA,USA and promised to avail the media empire
+        to COGHA,USA for the needed promotion and exhibition of its Summer
+        Festival. Christina Nicholas, Director of Communications for COGHA,USA,
+        outlined the company’s mission and vision and called on Corporate
+        America to partner the company to make this Noble Dream a Reality. She
+        also assured the upcoming generation of Ghanaian talents they now have
+        an international forum for them to exhibit their God-given talents.
+        Guests were also treated to electrifying musical performances from the
+        serenading voices of Rosemond and daughter and ChoirMaster, who left
+        them wanting for more but assured them of that at the Summer event as
+        well as Benita Biney, a beautiful young lady who's mastery of the adowa
+        dance held guests spellbound. Virginia Senator Mark Warner, sent a
+        message of solidarity to COGHA,USA thanking them for choosing Virginia
+        as the mainstay of COGHA,USA and contributing their quota to facilitate
+        employment opportunities in the State. Lydia Harris, President of
+        COGHA,USA thanked all the invited guests for honoring the invitation and
+        assured them the launch was just a precursor to what the summer event
+        promised and the very apparent excitement at the launch was motivation
+        to make the summer event one of a lifetime Guests had the opportunity to
+        interact with the chiefs and artists after the event as well as engage
+        in a colorful photoshoot session. The first Edition of COGHA,USA is
+        scheduled for June 2023 in Virginia.
+      </p>
+
+      <div
+        style={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
+          alignItems: "baseline",
+          justifyContent: "center",
+          margin: "100px",
         }}
       >
         <p
           style={{
-            fontFamily: "Macondo Regular",
-            fontSize: innerWidth > 500 ? "18vw" : "30vw",
-            textAlign: "center",
-            marginTop: innerWidth > 500 ? "-60px" : "",
+            fontFamily: "Quicksand var",
+            fontWeight: "600",
+            fontSize: "64px",
           }}
         >
-          404
+          Next Article
         </p>
-        <p
+        <div
           style={{
-            fontFamily: "Inter var",
-            fontWeight: "500",
-            fontSize: "24px",
-            marginBottom: "15px",
-            marginTop: innerWidth > 500 ? "-70px" : "",
+            display: "flex",
+            alignItems: "baseline",
+            position: "relative",
+            top: "16px",
           }}
         >
-          The page you requested could not be found
-        </p>
-        <Link to="/">
-          <button
-            style={{
-              backgroundColor: "#000000",
-              color: "#ffffff",
-              width: "150px",
-              height: "50px",
-              padding: "10px",
-              borderRadius: "20px",
-              fontFamily: "Inter var",
-              fontWeight: "700",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
+          <svg
+            width="72"
+            height="72"
+            viewBox="0 0 72 72"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Go Back Home
-          </button>
-        </Link>
-      </header>
+            <path
+              d="M60 36L62.1213 33.8787L64.2426 36L62.1213 38.1213L60 36ZM26 39C24.3431 39 23 37.6569 23 36C23 34.3431 24.3431 33 26 33V39ZM44.1213 15.8787L62.1213 33.8787L57.8787 38.1213L39.8787 20.1213L44.1213 15.8787ZM62.1213 38.1213L44.1213 56.1213L39.8787 51.8787L57.8787 33.8787L62.1213 38.1213ZM60 39H26V33H60V39Z"
+              fill="black"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <hr style={{ width: "80vw" }} className="mx-auto" />
       <section
         className="w-full pt-10 pb-2 px-10 mx-auto"
         style={{ display: "flex", flexDirection: "column", gap: "60px" }}
@@ -81,7 +132,7 @@ const NotFoundPage = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-            width: innerWidth > 500 ? "20vw" : "50vw",
+            width: window?.innerWidth < 500 ? "50vw" : "",
           }}
         >
           <StaticImage
@@ -100,36 +151,36 @@ const NotFoundPage = () => {
           >
             <div
               style={{
-                display: innerWidth > 500 ? "flex" : "none",
+                display: window?.innerWidth < 500 ? "none" : "flex",
                 justifyContent: "space-between",
                 width: "450px",
               }}
             >
-              <ScrollLink to="home" spy smooth>
+              <Link to="/#home" spy smooth>
                 <NavLink>Home</NavLink>
-              </ScrollLink>
-              <ScrollLink to="whatWeDo" spy smooth>
+              </Link>
+              <Link to="/#whatWeDo" spy smooth>
                 <NavLink>What We Do</NavLink>
-              </ScrollLink>
-              <ScrollLink to="gallery" spy smooth>
+              </Link>
+              <Link to="/#gallery" spy smooth>
                 <NavLink>Gallery</NavLink>
-              </ScrollLink>
-              <ScrollLink to="getInTouch" spy smooth activeClass="active">
+              </Link>
+              <Link to="/#getInTouch" spy smooth activeClass="active">
                 <NavLink>Get In Touch</NavLink>
-              </ScrollLink>
+              </Link>
               <Link to="/articles">
                 <NavLink>Articles</NavLink>
               </Link>
             </div>
             <div
-              className={innerWidth > 500 ? "" : "mx-auto"}
+              className={window?.innerWidth < 500 ? "mx-auto" : ""}
               style={{ display: "flex", flexDirection: "row", gap: "3vw" }}
             >
               <div
                 style={{
-                  width: innerWidth > 500 ? "3vw" : "30px",
-                  height: innerWidth > 500 ? "3vw" : "30px",
-                  borderRadius: innerWidth > 500 ? "3vw" : "30px",
+                  width: window?.innerWidth < 500 ? "30px" : "3vw",
+                  height: window?.innerWidth < 500 ? "30px" : "3vw",
+                  borderRadius: window?.innerWidth < 500 ? "30px" : "3vw",
                   padding: "5px",
                   backgroundColor: "#CCC7FF",
                   display: "flex",
@@ -153,9 +204,9 @@ const NotFoundPage = () => {
 
               <div
                 style={{
-                  width: innerWidth > 500 ? "3vw" : "30px",
-                  height: innerWidth > 500 ? "3vw" : "30px",
-                  borderRadius: innerWidth > 500 ? "3vw" : "30px",
+                  width: window?.innerWidth < 500 ? "30px" : "3vw",
+                  height: window?.innerWidth < 500 ? "30px" : "3vw",
+                  borderRadius: window?.innerWidth < 500 ? "30px" : "3vw",
                   padding: "5px",
                   backgroundColor: "#CCC7FF",
                   display: "flex",
@@ -179,9 +230,9 @@ const NotFoundPage = () => {
 
               <div
                 style={{
-                  width: innerWidth > 500 ? "3vw" : "30px",
-                  height: innerWidth > 500 ? "3vw" : "30px",
-                  borderRadius: innerWidth > 500 ? "3vw" : "30px",
+                  width: window?.innerWidth < 500 ? "30px" : "3vw",
+                  height: window?.innerWidth < 500 ? "30px" : "3vw",
+                  borderRadius: window?.innerWidth < 500 ? "30px" : "3vw",
                   padding: "5px",
                   backgroundColor: "#CCC7FF",
                   display: "flex",
@@ -206,10 +257,8 @@ const NotFoundPage = () => {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 };
 
-export default NotFoundPage;
-
-export const Head = () => <title>Not found</title>;
+export default ArticleView;

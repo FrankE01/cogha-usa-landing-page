@@ -1,77 +1,101 @@
+import { StaticImage } from "gatsby-plugin-image";
 import React, { useState, useEffect } from "react";
+import Navbar from "../components/Navbar";
 import headerbg1 from "../images/coghabg1.jpg";
-import headerbg2 from "../images/coghabg2.png";
-import { Link as ScrollLink } from "react-scroll";
 import { Link } from "gatsby";
 import NavLink from "../components/NavLink";
-import { StaticImage } from "gatsby-plugin-image";
+import Sidebar from "../components/Sidebar";
 
-const NotFoundPage = () => {
+const ArticlesPage = () => {
   const [innerWidth, setInnerWidth] = useState(0);
 
   useEffect(() => {
     if (typeof window !== undefined) {
       setInnerWidth(window.innerWidth);
     }
-  }, []);
+  });
 
   return (
-    <main style={{ display: "flex", flexDirection: "column", gap: "100px" }}>
+    <main>
       <header
         style={{
-          height: innerWidth > 500 ? "450px" : "350px",
-          backgroundImage:
-            innerWidth > 500 ? `url(${headerbg2})` : `url(${headerbg1})`,
+          height: "280px",
+          backgroundImage: `url(${headerbg1})`,
           backgroundSize: `100vw`,
-          textAlign: "center",
-          alignItems: "center",
-          justifyContent: "center",
-          display: "flex",
-          flexDirection: "column",
         }}
       >
-        <p
-          style={{
-            fontFamily: "Macondo Regular",
-            fontSize: innerWidth > 500 ? "18vw" : "30vw",
-            textAlign: "center",
-            marginTop: innerWidth > 500 ? "-60px" : "",
-          }}
-        >
-          404
-        </p>
-        <p
-          style={{
-            fontFamily: "Inter var",
-            fontWeight: "500",
-            fontSize: "24px",
-            marginBottom: "15px",
-            marginTop: innerWidth > 500 ? "-70px" : "",
-          }}
-        >
-          The page you requested could not be found
-        </p>
-        <Link to="/">
-          <button
+        {innerWidth < 500 ? <Sidebar /> : <Navbar />}
+
+        <div className="mx-auto" style={{ position: "relative", top: "120px" }}>
+          <p
             style={{
-              backgroundColor: "#000000",
-              color: "#ffffff",
-              width: "150px",
-              height: "50px",
-              padding: "10px",
-              borderRadius: "20px",
-              fontFamily: "Inter var",
-              fontWeight: "700",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
+              fontFamily: "Macondo Regular",
+              fontSize: innerWidth < 500 ? "60px" : "4vw",
+              textAlign: "center",
+              textTransform: "uppercase",
             }}
           >
-            Go Back Home
-          </button>
-        </Link>
+            Articles
+          </p>
+          <p
+            style={{
+              fontFamily: "Inter var",
+              fontSize: innerWidth < 500 ? "16px" : "1.5vw",
+              textAlign: "center",
+              fontWeight: "500",
+              position: "relative",
+              top: "-20px",
+            }}
+          >
+            Read about our organization and events
+          </p>
+        </div>
       </header>
+
+      <section className="w-full py-10 px-10 mx-auto">
+        <Link to="/articles/cogha-usa-a-new-paradigm">
+          <div
+            className={innerWidth < 500 ? "mx-auto" : ""}
+            style={{
+              margin: innerWidth < 500 ? "" : "30px",
+              width: innerWidth < 500 ? "300px" : "350px",
+              display: "inline-block",
+            }}
+          >
+            <div>
+              <StaticImage
+                src="../images/image 24.jpg"
+                alt="articleImage"
+                placeholder="blurred"
+                //   style={{ width: innerWidth < 500 ? "250px" : "30vw" }}
+              />
+            </div>
+            <p
+              style={{
+                fontFamily: "Inter var",
+                fontSize: "16px",
+                textAlign: "right",
+                marginBottom: "-35px",
+                marginTop: "10px",
+              }}
+            >
+              Dec 23, 2022
+            </p>
+            <p
+              style={{
+                fontFamily: "Inter var",
+                fontWeight: "500",
+                fontSize: "24px",
+                margin: "10px 0",
+              }}
+            >
+              COGHA, USA
+              <br /> A New Paradigm
+            </p>
+          </div>
+        </Link>
+      </section>
+      <hr style={{ width: "80vw" }} className="mx-auto" />
       <section
         className="w-full pt-10 pb-2 px-10 mx-auto"
         style={{ display: "flex", flexDirection: "column", gap: "60px" }}
@@ -81,7 +105,7 @@ const NotFoundPage = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-            width: innerWidth > 500 ? "20vw" : "50vw",
+            width: innerWidth < 500 ? "50vw" : "",
           }}
         >
           <StaticImage
@@ -100,36 +124,36 @@ const NotFoundPage = () => {
           >
             <div
               style={{
-                display: innerWidth > 500 ? "flex" : "none",
+                display: innerWidth < 500 ? "none" : "flex",
                 justifyContent: "space-between",
                 width: "450px",
               }}
             >
-              <ScrollLink to="home" spy smooth>
+              <Link to="/#home" spy smooth>
                 <NavLink>Home</NavLink>
-              </ScrollLink>
-              <ScrollLink to="whatWeDo" spy smooth>
+              </Link>
+              <Link to="/#whatWeDo" spy smooth>
                 <NavLink>What We Do</NavLink>
-              </ScrollLink>
-              <ScrollLink to="gallery" spy smooth>
+              </Link>
+              <Link to="/#gallery" spy smooth>
                 <NavLink>Gallery</NavLink>
-              </ScrollLink>
-              <ScrollLink to="getInTouch" spy smooth activeClass="active">
+              </Link>
+              <Link to="/#getInTouch" spy smooth activeClass="active">
                 <NavLink>Get In Touch</NavLink>
-              </ScrollLink>
+              </Link>
               <Link to="/articles">
                 <NavLink>Articles</NavLink>
               </Link>
             </div>
             <div
-              className={innerWidth > 500 ? "" : "mx-auto"}
+              className={innerWidth < 500 ? "mx-auto" : ""}
               style={{ display: "flex", flexDirection: "row", gap: "3vw" }}
             >
               <div
                 style={{
-                  width: innerWidth > 500 ? "3vw" : "30px",
-                  height: innerWidth > 500 ? "3vw" : "30px",
-                  borderRadius: innerWidth > 500 ? "3vw" : "30px",
+                  width: innerWidth < 500 ? "30px" : "3vw",
+                  height: innerWidth < 500 ? "30px" : "3vw",
+                  borderRadius: innerWidth < 500 ? "30px" : "3vw",
                   padding: "5px",
                   backgroundColor: "#CCC7FF",
                   display: "flex",
@@ -153,9 +177,9 @@ const NotFoundPage = () => {
 
               <div
                 style={{
-                  width: innerWidth > 500 ? "3vw" : "30px",
-                  height: innerWidth > 500 ? "3vw" : "30px",
-                  borderRadius: innerWidth > 500 ? "3vw" : "30px",
+                  width: innerWidth < 500 ? "30px" : "3vw",
+                  height: innerWidth < 500 ? "30px" : "3vw",
+                  borderRadius: innerWidth < 500 ? "30px" : "3vw",
                   padding: "5px",
                   backgroundColor: "#CCC7FF",
                   display: "flex",
@@ -179,9 +203,9 @@ const NotFoundPage = () => {
 
               <div
                 style={{
-                  width: innerWidth > 500 ? "3vw" : "30px",
-                  height: innerWidth > 500 ? "3vw" : "30px",
-                  borderRadius: innerWidth > 500 ? "3vw" : "30px",
+                  width: innerWidth < 500 ? "30px" : "3vw",
+                  height: innerWidth < 500 ? "30px" : "3vw",
+                  borderRadius: innerWidth < 500 ? "30px" : "3vw",
                   padding: "5px",
                   backgroundColor: "#CCC7FF",
                   display: "flex",
@@ -210,6 +234,4 @@ const NotFoundPage = () => {
   );
 };
 
-export default NotFoundPage;
-
-export const Head = () => <title>Not found</title>;
+export default ArticlesPage;
